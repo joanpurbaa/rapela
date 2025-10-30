@@ -22,7 +22,7 @@ const Navigation: React.FC = () => {
 	return (
 		<>
 			<nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-lg border-t border-gray-200 shadow-lg z-50">
-				<div className="flex justify-around items-center px-2 py-2">
+				<div className="flex justify-around items-center px-1 py-3">
 					{navItems.map((item) => {
 						const Icon = item.icon;
 						const isActive = location.pathname === item.path;
@@ -31,25 +31,25 @@ const Navigation: React.FC = () => {
 							<Link
 								key={item.path}
 								to={item.path}
-								className={`flex flex-col items-center justify-center gap-1 px-4 py-2 rounded-xl transition-all min-w-[70px] ${
-									isActive
-										? "text-green-600"
-										: "text-gray-500 hover:text-green-600 hover:bg-green-50"
+								className={`flex flex-col items-center justify-center gap-1 px-2 py-2 rounded-xl transition-all min-w-[60px] ${
+									isActive ? "text-green-600" : "text-gray-500 hover:text-green-600"
 								}`}>
 								<div
 									className={`relative ${
-										isActive ? "transform -translate-y-1" : ""
+										isActive ? "transform -translate-y-0.5" : ""
 									} transition-transform`}>
 									<Icon
-										className={`w-6 h-6 ${isActive ? "stroke-[2.5]" : "stroke-2"}`}
+										className={`w-5 h-5 ${isActive ? "stroke-[2.5]" : "stroke-2"}`}
 									/>
 									{isActive && (
 										<div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-green-600 rounded-full" />
 									)}
 								</div>
 								<span
-									className={`text-xs font-medium ${isActive ? "text-green-600" : ""}`}>
-									{item.label}
+									className={`text-[10px] font-medium ${
+										isActive ? "text-green-600" : ""
+									}`}>
+									{item.label.split(" ")[0]}
 								</span>
 							</Link>
 						);
