@@ -41,73 +41,19 @@ interface AnalyticsData {
 const PredictiveAnalytics: React.FC = () => {
     const [data] = useState<AnalyticsData>({
         panenPredictions: [
-            {
-                tanaman: "Selada",
-                rak: "A",
-                estimasiPanen: "12 hari",
-                confidence: 85,
-                optimalPanen: true,
-            },
-            {
-                tanaman: "Bayam",
-                rak: "B",
-                estimasiPanen: "17 hari",
-                confidence: 78,
-                optimalPanen: true,
-            },
-            {
-                tanaman: "Kangkung",
-                rak: "C",
-                estimasiPanen: "6 hari",
-                confidence: 92,
-                optimalPanen: false,
-            },
+            { tanaman: "Selada", rak: "A", estimasiPanen: "12 hari", confidence: 85, optimalPanen: true },
+            { tanaman: "Bayam", rak: "B", estimasiPanen: "17 hari", confidence: 78, optimalPanen: true },
+            { tanaman: "Kangkung", rak: "C", estimasiPanen: "6 hari", confidence: 92, optimalPanen: false },
         ],
         riskAssessments: [
-            {
-                jenis: "Jamur",
-                level: "rendah",
-                probabilitas: 15,
-                dampak: "Kerusakan daun",
-                rekomendasi: "Pertahankan sirkulasi udara",
-            },
-            {
-                jenis: "Hama",
-                level: "sedang",
-                probabilitas: 45,
-                dampak: "Kerusakan tanaman",
-                rekomendasi: "Monitor intensif, siapkan pestisida organik",
-            },
-            {
-                jenis: "Defisiensi Nutrisi",
-                level: "rendah",
-                probabilitas: 20,
-                dampak: "Pertumbuhan lambat",
-                rekomendasi: "Cek level PPM secara berkala",
-            },
+            { jenis: "Jamur", level: "rendah", probabilitas: 15, dampak: "Kerusakan daun", rekomendasi: "Pertahankan sirkulasi udara" },
+            { jenis: "Hama", level: "sedang", probabilitas: 45, dampak: "Kerusakan tanaman", rekomendasi: "Monitor intensif, siapkan pestisida organik" },
+            { jenis: "Defisiensi Nutrisi", level: "rendah", probabilitas: 20, dampak: "Pertumbuhan lambat", rekomendasi: "Cek level PPM secara berkala" },
         ],
         maintenanceSchedule: [
-            {
-                peralatan: "Pompa Nutrisi A",
-                jenis: "Pompa",
-                terakhir: "2024-01-15",
-                berikutnya: "2024-02-15",
-                status: "optimal",
-            },
-            {
-                peralatan: "Filter Air Utama",
-                jenis: "Filter",
-                terakhir: "2024-01-10",
-                berikutnya: "2024-01-25",
-                status: "warning",
-            },
-            {
-                peralatan: "Sensor PH",
-                jenis: "Sensor",
-                terakhir: "2024-01-18",
-                berikutnya: "2024-02-18",
-                status: "optimal",
-            },
+            { peralatan: "Pompa Nutrisi A", jenis: "Pompa", terakhir: "2024-01-15", berikutnya: "2024-02-15", status: "optimal" },
+            { peralatan: "Filter Air Utama", jenis: "Filter", terakhir: "2024-01-10", berikutnya: "2024-01-25", status: "warning" },
+            { peralatan: "Sensor PH", jenis: "Sensor", terakhir: "2024-01-18", berikutnya: "2024-02-18", status: "optimal" },
         ],
         energyTrends: [
             { tanggal: "Sen", konsumsi: 3.2, produksi: 2.1, efisiensi: 65 },
@@ -120,27 +66,19 @@ const PredictiveAnalytics: React.FC = () => {
 
     const getRiskColor = (level: string) => {
         switch (level) {
-            case "rendah":
-                return "text-green-500";
-            case "sedang":
-                return "text-yellow-500";
-            case "tinggi":
-                return "text-red-500";
-            default:
-                return "text-gray-500";
+            case "rendah": return "text-green-500";
+            case "sedang": return "text-yellow-500";
+            case "tinggi": return "text-red-500";
+            default: return "text-gray-500";
         }
     };
 
     const getStatusColor = (status: string) => {
         switch (status) {
-            case "optimal":
-                return "text-green-500";
-            case "warning":
-                return "text-yellow-500";
-            case "critical":
-                return "text-red-500";
-            default:
-                return "text-gray-500";
+            case "optimal": return "text-green-500";
+            case "warning": return "text-yellow-500";
+            case "critical": return "text-red-500";
+            default: return "text-gray-500";
         }
     };
 
@@ -269,7 +207,6 @@ const PredictiveAnalytics: React.FC = () => {
                             ))}
                         </div>
                     </div>
-
                     <div className="bg-white rounded-2xl shadow-lg p-6 border border-purple-100 hover:shadow-xl transition-shadow">
                         <div className="flex items-center justify-between mb-4">
                             <h3 className="text-lg font-semibold text-gray-800">Trend Energi</h3>
