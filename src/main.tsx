@@ -8,6 +8,7 @@ const PredictiveAnalytics = lazy(() => import("./pages/PredictiveAnalytics"));
 const PlantManagement = lazy(() => import("./pages/PlantManagement"));
 const Marketplace = lazy(() => import("./pages/Marketplace"));
 const Navigation = lazy(() => import("./components/Navigation"));
+const TrackRecord = lazy(() => import("./pages/TrackRecord"));
 
 export const LoadingSpinner = () => (
 	<div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-blue-50 to-emerald-50">
@@ -28,6 +29,7 @@ export const App = () => {
 						<Route path="/analytics" element={<PredictiveAnalytics />} />
 						<Route path="/plants" element={<PlantManagement />} />
 						<Route path="/marketplace" element={<Marketplace />} />
+						<Route path="/track-record" element={<TrackRecord />} />
 					</Routes>
 					<Navigation />
 				</Suspense>

@@ -1,5 +1,11 @@
 import React from "react";
-import { Home, BarChart3, Sprout, ShoppingCart } from "lucide-react";
+import {
+	Home,
+	BarChart3,
+	Sprout,
+	ShoppingCart,
+	TrendingUp,
+} from "lucide-react";
 import { Link, useLocation } from "react-router";
 
 const Navigation: React.FC = () => {
@@ -10,6 +16,7 @@ const Navigation: React.FC = () => {
 		{ path: "/analytics", icon: BarChart3, label: "Analytics" },
 		{ path: "/plants", icon: Sprout, label: "Plants" },
 		{ path: "/marketplace", icon: ShoppingCart, label: "Marketplace" },
+		{ path: "/track-record", icon: TrendingUp, label: "Track Record" },
 	];
 
 	return (
