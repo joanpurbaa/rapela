@@ -6,6 +6,7 @@ import {
 	RotateCcw,
 	TrendingUp,
 	AlertCircle,
+	ChevronDown,
 } from "lucide-react";
 
 type PlantPhase = "bibit" | "vegetatif" | "berbunga" | "panen";
@@ -21,7 +22,7 @@ interface PlantSchedule {
 	id: string;
 	rak: string;
 	tanaman: string;
-	fase: "bibit" | "vegetatif" | "berbunga" | "panen";
+	fase: PlantPhase;
 	tanggalTanam: string;
 	estimasiPanen: string;
 	progress: number;
@@ -116,15 +117,15 @@ const PlantManagement: React.FC = () => {
 			progress: 0,
 			kesehatan: "baik",
 		};
-		setSchedules([...schedules, newSchedule]);
+		setSchedules([newSchedule, ...schedules]);
 		setShowAddForm(false);
 		setNewPlant({ rak: "", tanaman: "", fase: "bibit", tanggalTanam: "" });
 	};
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-green-50 p-4 md:p-8">
+		<div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-green-50 p-4 md:p-8 pb-24">
 			<div className="mb-8">
-				<h1 className="text-4xl font-bold text-emerald-800 mb-2">
+				<h1 className="text-3xl md:text-4xl font-bold text-emerald-800 mb-2">
 					Plant Management
 				</h1>
 				<p className="text-gray-600">
@@ -138,14 +139,14 @@ const PlantManagement: React.FC = () => {
 				</div>
 			</div>
 
-			<div className="flex gap-4 mb-6">
+			<div className="flex flex-col sm:flex-row gap-4 mb-6">
 				<button
 					onClick={() => setShowAddForm(true)}
-					className="bg-gradient-to-r from-emerald-500 to-green-500 text-white px-6 py-3 rounded-xl font-medium hover:shadow-lg transition-all flex items-center gap-2">
+					className="w-full sm:w-auto justify-center bg-gradient-to-r from-emerald-500 to-green-500 text-white px-6 py-3 rounded-xl font-medium hover:shadow-lg transition-all flex items-center gap-2">
 					<Plus className="w-4 h-4" />
 					Tambah Tanaman Baru
 				</button>
-				<button className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-3 rounded-xl font-medium hover:shadow-lg transition-all flex items-center gap-2">
+				<button className="w-full sm:w-auto justify-center bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-3 rounded-xl font-medium hover:shadow-lg transition-all flex items-center gap-2">
 					<RotateCcw className="w-4 h-4" />
 					Rotasi Otomatis
 				</button>
@@ -156,7 +157,7 @@ const PlantManagement: React.FC = () => {
 					<h3 className="text-lg font-semibold text-gray-800 mb-4">
 						Tambah Tanaman Baru
 					</h3>
-					<div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 						<input
 							type="text"
 							placeholder="Rak"
@@ -164,27 +165,39 @@ const PlantManagement: React.FC = () => {
 							onChange={(e) => setNewPlant({ ...newPlant, rak: e.target.value })}
 							className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
 						/>
-						<select
-							value={newPlant.tanaman}
-							onChange={(e) => setNewPlant({ ...newPlant, tanaman: e.target.value })}
-							className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500">
-							<option value="">Pilih Tanaman</option>
-							<option value="Selada">Selada</option>
-							<option value="Bayam">Bayam</option>
-							<option value="Kangkung">Kangkung</option>
-							<option value="Pakcoy">Pakcoy</option>
-							<option value="Basil">Basil</option>
-						</select>
-						<select
-							value={newPlant.fase}
-							onChange={(e) =>
-								setNewPlant({ ...newPlant, fase: e.target.value as PlantPhase })
-							}
-							className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500">
-							<option value="bibit">Bibit</option>
-							<option value="vegetatif">Vegetatif</option>
-							<option value="berbunga">Berbunga</option>
-						</select>
+						<div className="relative">
+							<select
+								value={newPlant.tanaman}
+								onChange={(e) =>
+									setNewPlant({ ...newPlant, tanaman: e.target.value })
+								}
+								className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 appearance-none pr-10">
+								<option value="">Pilih Tanaman</option>
+								<option value="Selada">Selada</option>
+								<option value="Bayam">Bayam</option>
+								<option value="Kangkung">Kangkung</option>
+								<option value="Pakcoy">Pakcoy</option>
+								<option value="Basil">Basil</option>
+							</select>
+							<ChevronDown className="absolute top-1/2 right-3 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+						</div>
+						<div className="relative">
+							<select
+								value={newPlant.fase}
+								onChange={(e) =>
+									setNewPlant({
+										...newPlant,
+										fase: e.target.value as PlantPhase,
+									})
+								}
+								className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 appearance-none pr-10">
+								<option value="bibit">Bibit</option>
+								<option value="vegetatif">Vegetatif</option>
+								<option value="berbunga">Berbunga</option>
+							</select>
+							<ChevronDown className="absolute top-1/2 right-3 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+						</div>
+
 						<input
 							type="date"
 							value={newPlant.tanggalTanam}
@@ -270,12 +283,12 @@ const PlantManagement: React.FC = () => {
 							</div>
 
 							<div className="flex gap-2">
-								<button className="flex-1 bg-blue-500 text-white py-2 rounded-lg font-medium hover:bg-blue-600 transition-colors text-sm">
-									<Settings className="w-4 h-4 inline mr-1" />
+								<button className="flex-1 bg-blue-500 text-white py-2 rounded-lg font-medium hover:bg-blue-600 transition-colors text-sm flex items-center justify-center gap-1">
+									<Settings className="w-4 h-4" />
 									Atur
 								</button>
-								<button className="flex-1 bg-green-500 text-white py-2 rounded-lg font-medium hover:bg-green-600 transition-colors text-sm">
-									<TrendingUp className="w-4 h-4 inline mr-1" />
+								<button className="flex-1 bg-green-500 text-white py-2 rounded-lg font-medium hover:bg-green-600 transition-colors text-sm flex items-center justify-center gap-1">
+									<TrendingUp className="w-4 h-4" />
 									Progress
 								</button>
 							</div>
